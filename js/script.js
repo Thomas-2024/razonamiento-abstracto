@@ -1,25 +1,37 @@
-const dir = "Ejercicios/";
-
 window.onload = function () {
+    const modalAnswer = document.getElementById('modalAnswer');
     const exerciseSection = document.getElementById('exerciseSection');
-    const urlImages = [];
-    for (let i = 0; i < 48; i++) {
-        urlImages.push(dir + "Ejercicio" + (i+1) + ".gif");
-    }
-    
-    for (let i = 0; i < urlImages.length; i++) {
-        const exerciseDiv = buitlExercise(urlImages[i], i);
-        exerciseSection.appendChild(exerciseDiv);
-    }
+    let i = 0;
+    fetch('backend/backend.php', {
+                method: 'GET'
+            }
+        )
+        .then(response => response.json())
+        .then(images => {
+            images.forEach(image => {
+            const exerciseDiv = buitlExercise(image.url, i);
+            exerciseSection.appendChild(exerciseDiv);
+            i++;
+        })
+    });
 }
 
 function buitlExercise(url, i) {
     const div = document.createElement('div');
     div.className = 'exercise';
 
-    const text = document.createElement('div');
-    text.textContent = i + 1 + ". ¿Cuál figura completa lógicamente la serie?";
-    div.appendChild(text);
+    const header = document.createElement('div');
+    header.textContent = i + 1 + ". ¿Cuál figura completa lógicamente la serie?";
+
+    const info = document.createElement('a');
+    info.textContent = "i";
+    info.className = 'info';
+    info.onclick = function () {
+        showAnswers(i)
+    }
+    header.appendChild(info);
+
+    div.appendChild(header);
 
     const img = document.createElement('img');
     img.src = url;
@@ -46,4 +58,12 @@ function buitlExercise(url, i) {
     div.appendChild(options);
 
     return div;
+}
+
+function showAnswers(i) {
+    for (let i = 0; i < answers.length; i++) {
+        for (let j = 0; j < answers[i].length; j++) {
+            
+        }
+    }
 }

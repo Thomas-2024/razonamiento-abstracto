@@ -44,3 +44,27 @@ footer {
     width: min-content;
 }
 
+.info {
+    padding: 8px;
+    background-color: blue;
+    justify-content: center;
+}
+
+#modalAnswer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50vw;
+    position: fixed;
+    top: 20vh;
+    margin: 0px 20vw;
+    background-color: white;
+    display: none;
+}
+
+#modalTitle {
+    width: 100%;
+    background-color: blue;
+    padding: 10px 25px;
+}
+
+
